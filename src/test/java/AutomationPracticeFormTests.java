@@ -65,8 +65,16 @@ public class AutomationPracticeFormTests {
 //
         $(".modal-content").should(appear);
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".modal-body").shouldHave(text(fullName), (text(userEmail)), (text(userNumber)),
-                (text(currentAddress)), (text(gender)), (text(birthDate)), (text(subjects)),
-                (text(hobbies)), (text(img)), (text(stateAndCity)));
+        String tbody = "table tbody";
+        $(tbody).$("tr", 0).$("td",1).shouldBe(text(fullName));
+        $(tbody).$("tr", 1).$("td",1).shouldBe(text(userEmail));
+        $(tbody).$("tr", 2).$("td",1).shouldBe(text(gender));
+        $(tbody).$("tr", 3).$("td",1).shouldBe(text(userNumber));
+        $(tbody).$("tr", 4).$("td",1).shouldBe(text(birthDate));
+        $(tbody).$("tr", 5).$("td",1).shouldBe(text(subjects));
+        $(tbody).$("tr", 6).$("td",1).shouldBe(text(hobbies));
+        $(tbody).$("tr", 7).$("td",1).shouldBe(text(img));
+        $(tbody).$("tr", 8).$("td",1).shouldBe(text(currentAddress));
+        $(tbody).$("tr", 9).$("td",1).shouldBe(text(stateAndCity));
     }
 }
