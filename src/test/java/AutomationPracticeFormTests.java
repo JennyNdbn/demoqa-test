@@ -55,7 +55,7 @@ public class AutomationPracticeFormTests {
         $("#subjectsInput").setValue(subject2).pressEnter();
         $(byText(hobby1)).click();
         $(byText(hobby2)).click();
-        $("#uploadPicture").uploadFromClasspath("images/cat.jpg");
+        $("#uploadPicture").uploadFromClasspath("images/" + img);
         $("#currentAddress").setValue(currentAddress);
         $("#state").click();
         $("#stateCity-wrapper").$(byText(state)).click();
