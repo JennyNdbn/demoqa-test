@@ -28,7 +28,7 @@ public class AutomationPracticeFormTests {
         String userNumber = "9876543210";
         String birthYear = "2011";
         String birthMonth = "July";
-        String birthDay = "7";
+        String birthDay = "07";
         String birthDate = birthDay + " " + birthMonth + "," + birthYear;
         String currentAddress = "Buckingham Palace";
         String subject1 = "Arts";
@@ -45,26 +45,39 @@ public class AutomationPracticeFormTests {
         $("#firstName").setValue(firstName);
         $("#lastName").setValue(lastName);
         $("#userEmail").setValue(userEmail);
-        $(byText(gender)).click();
+        $("#genterWrapper").$(byText(gender)).click();
         $("#userNumber").setValue(userNumber);
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption(birthMonth);
         $(".react-datepicker__year-select").selectOption(birthYear);
-        $(".react-datepicker__month").$(byText(birthDay)).click();
+        $(".react-datepicker__day--0" + birthDay + ":not(.react-datepicker__day--outside-month)").click();
+       // $(".react-datepicker__month").$(byText(birthDay)).click();
         $("#subjectsInput").setValue(subject1).pressEnter();
         $("#subjectsInput").setValue(subject2).pressEnter();
-        $(byText(hobby1)).click();
-        $(byText(hobby2)).click();
+        $("#hobbiesWrapper").$(byText(hobby1)).click();
+        $("#hobbiesWrapper").$(byText(hobby2)).click();
         $("#uploadPicture").uploadFromClasspath("images/" + img);
         $("#currentAddress").setValue(currentAddress);
         $("#state").click();
         $("#stateCity-wrapper").$(byText(state)).click();
         $("#city").click();
         $("#stateCity-wrapper").$(byText(city)).click();
-        $(byText("Submit")).click();
+        $("#submit").click();
 //
         $(".modal-content").should(appear);
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text(fullName));
+        $(".table-responsive").$(byText("Student Email")).parent().shouldHave(text(userEmail));
+        $(".table-responsive").$(byText("Gender")).parent().shouldHave(text(gender));
+        $(".table-responsive").$(byText("Mobile")).parent().shouldHave(text(userNumber));
+        $(".table-responsive").$(byText("Date of Birth")).parent().shouldHave(text(birthDate));
+        $(".table-responsive").$(byText("Subjects")).parent().shouldHave(text(subjects));
+        $(".table-responsive").$(byText("Hobbies")).parent().shouldHave(text(hobbies));
+        $(".table-responsive").$(byText("Picture")).parent().shouldHave(text(img));
+        $(".table-responsive").$(byText("Address")).parent().shouldHave(text(currentAddress));
+        $(".table-responsive").$(byText("State and City")).parent().shouldHave(text(stateAndCity));
+
+        /* old results verifying
         String tbody = "table tbody";
         $(tbody).$("tr", 0).$("td",1).shouldBe(text(fullName));
         $(tbody).$("tr", 1).$("td",1).shouldBe(text(userEmail));
@@ -76,5 +89,6 @@ public class AutomationPracticeFormTests {
         $(tbody).$("tr", 7).$("td",1).shouldBe(text(img));
         $(tbody).$("tr", 8).$("td",1).shouldBe(text(currentAddress));
         $(tbody).$("tr", 9).$("td",1).shouldBe(text(stateAndCity));
+        */
     }
 }
