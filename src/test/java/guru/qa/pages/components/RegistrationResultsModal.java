@@ -1,4 +1,4 @@
-package pages.components;
+package guru.qa.pages.components;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;

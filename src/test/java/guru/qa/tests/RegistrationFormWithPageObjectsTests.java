@@ -1,7 +1,7 @@
-package tests;
+package guru.qa.tests;
 
 import org.junit.jupiter.api.Test;
-import pages.RegistrationPage;
+import guru.qa.pages.RegistrationPage;
 
 public class RegistrationFormWithPageObjectsTests extends TestBase {
 
