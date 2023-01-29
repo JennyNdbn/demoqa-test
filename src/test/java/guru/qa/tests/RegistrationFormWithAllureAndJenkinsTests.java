@@ -2,7 +2,7 @@ package guru.qa.tests;
 
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static io.qameta.allure.Allure.step;
 
@@ -14,6 +14,7 @@ public class RegistrationFormWithAllureAndJenkinsTests extends TestBaseExtended 
     @Feature("Testing of demoqa.com")
     @Story("Testing Student Registration Form filling")
     @Severity(SeverityLevel.BLOCKER)
+    @Tag("remote")
     void fillPracticeFormTest() {
         step("Open Student Registration Form", () -> {
         registrationPage.openPage();
