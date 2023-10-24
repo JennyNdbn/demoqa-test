@@ -40,10 +40,11 @@ public class TestBaseExtended {
     @AfterEach
     void addAttachments() {
         Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
         if (!Configuration.browser.equalsIgnoreCase("firefox")){
-            Attach.pageSource();
+            Attach.browserConsoleLogs();
         }
-        Attach.browserConsoleLogs();
+
         Attach.addVideo();
     }
 }
