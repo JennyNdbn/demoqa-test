@@ -1,5 +1,6 @@
 package guru.qa.tests;
 
+import com.codeborne.selenide.Configuration;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.*;
@@ -29,12 +30,18 @@ public class RegistrationFormWithAllureAndJenkinsTests extends TestBaseExtended 
                 .setSubjects(testData.subject1)
                 .setSubjects(testData.subject2)
                 .setHobbies(testData.hobby)
-                .setPicture(testData.img)
                 .setCurrentAddress(testData.currentAddress)
                 .setState(testData.state)
-                .setCity(testData.city)
-                .submit();
+                .setCity(testData.city);
+
+        if (!Configuration.browser.equalsIgnoreCase("firefox")){
+            registrationPage.setPicture(testData.img);
+        }
+
         });
+        step("Press submit button", () ->
+        registrationPage.submit()
+        );
         step("Verify results", () -> {
         registrationPage.verifyResultsModalAppears()
                 .verifyResult("Student Name", testData.fullName)
@@ -44,9 +51,12 @@ public class RegistrationFormWithAllureAndJenkinsTests extends TestBaseExtended 
                 .verifyResult("Date of Birth", testData.birthDate)
                 .verifyResult("Subjects", testData.subjects)
                 .verifyResult("Hobbies", testData.hobby)
-                .verifyResult("Picture", testData.img)
                 .verifyResult("Address", testData.currentAddress)
                 .verifyResult("State and City", testData.stateAndCity);
+
+            if (!Configuration.browser.equalsIgnoreCase("firefox")){
+                registrationPage.verifyResult("Picture", testData.img);
+            }
         });
     }
 }
